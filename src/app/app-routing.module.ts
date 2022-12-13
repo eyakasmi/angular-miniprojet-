@@ -23,6 +23,9 @@ const routes: Routes = [
       {
         path: 'team',
         loadChildren: () => import('./modules/team/team.module').then(m => m.TeamModule)},
+        {
+          path: 'profile',
+          loadChildren: () => import('./modules/profile/profile.module').then(m => m.ProfileModule)},
 
       {
         path: 'detailTeam',

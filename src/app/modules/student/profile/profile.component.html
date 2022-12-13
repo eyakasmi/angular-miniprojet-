@@ -12,10 +12,7 @@
                                 <div class="col-md-4">
                                     <div class="profile-img">
                                         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog" alt=""/>
-                                        <div class="file btn btn-lg btn-primary">
-                                            Change Photo
-                                            <input type="file" name="file"/>
-                                        </div>
+                                        
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -49,34 +46,18 @@
                                         <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                                                     <div class="row">
                                                         <div class="col-md-6">
-                                                            <label>{{student.id}}</label>
+                                                            <label>Nom</label>
                                                         </div>
                                                         <div class="col-md-6">
-                                                            <p>Kshiti123</p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            <label>Name</label>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <p>Kshiti Ghelani</p>
+                                                            <p>{{student.nomE}}</p>
                                                         </div>
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-md-6">
-                                                            <label>Email</label>
+                                                            <label>Prenom</label>
                                                         </div>
                                                         <div class="col-md-6">
-                                                            <p>Email@gmail.com</p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            <label>Phone</label>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <p>123 456 7890</p>
+                                                            <p>{{student.prenomE}}</p>
                                                         </div>
                                                     </div>
                                                     <div class="row">
@@ -84,17 +65,18 @@
                                                             <label>Option</label>
                                                         </div>
                                                         <div class="col-md-6">
-                                                            <p>Gamix</p>
+                                                            <p>{{student.option}}</p>
                                                         </div>
                                                     </div>
+                                                    
                                         </div>
                                         <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                                                     <div class="row">
                                                         <div class="col-md-6">
-                                                            <label>Number of contract</label>
+                                                            <label>contrat numbers</label>
                                                         </div>
                                                         <div class="col-md-6">
-                                                            <p>5</p>
+                                                            <p>{{contratCount}}</p>
                                                         </div>
                                                     </div>
                                                     <div class="row">
@@ -110,7 +92,7 @@
                                                             <label>University</label>
                                                         </div>
                                                         <div class="col-md-6">
-                                                            <p>UniName</p>
+                                                            <p>{{university.nomUniv}}</p>
                                                         </div>
                                                     </div>
                                                     <div class="row">
@@ -122,6 +104,7 @@
                                                         </div>
                                                     </div>
                                         </div>
+                                        <div style="margin-top : 30px" [ngStyle]="{'border-top':'1px solid #dee2e6'}"></div>
                                     </div>
                                 </div>
                             </div>

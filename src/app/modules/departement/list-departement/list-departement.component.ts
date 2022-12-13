@@ -1,8 +1,11 @@
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ConfirmationService, MessageService } from 'primeng/api';
+import { Observable, ReplaySubject } from 'rxjs';
 import { Departement } from 'src/app/shared/models/departement';
+
 import { DepartmentService } from 'src/app/shared/services/department/department.service';
 
 @Component({
@@ -20,7 +23,14 @@ export class ListDepartementComponent {
   departDriven!: Departement;
   myForm: FormGroup;
 
-  constructor(private service: ActivatedRoute,private formBuilder:FormBuilder,private departementService:DepartmentService, private messageService: MessageService,private confirmationService: ConfirmationService){
+
+
+  
+  
+  
+
+  constructor(private http:HttpClient,private service: ActivatedRoute,private formBuilder:FormBuilder,private departementService:DepartmentService, private messageService: MessageService,private confirmationService: ConfirmationService){
+ 
     this.id = this.service.snapshot.params['id'];
     this.getStudentsByIdUnivrsite(this.id);
     this.myForm = this.formBuilder.group({
@@ -112,4 +122,11 @@ export class ListDepartementComponent {
   addItem() {
     this.reloadData();
   }
+
+  
+
+
+  
+  
+  
 }

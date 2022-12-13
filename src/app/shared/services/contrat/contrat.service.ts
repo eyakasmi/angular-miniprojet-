@@ -27,7 +27,7 @@ export class ContratService {
     return this.http.get<Contrat>('http://localhost:3000/contrat/'+id);
   }
 
-  getContratsByStudent(idStudent:number):Observable<any>{
+  getContratsByStudent(idStudent:number):Observable<Contrat[]>{
     let params = new HttpParams().set('idStudent', idStudent);
     return this.http.get<Contrat[]>('http://localhost:3000/contrat/', {params:params});
   }
