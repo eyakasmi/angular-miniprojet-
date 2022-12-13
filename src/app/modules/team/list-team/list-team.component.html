@@ -1,0 +1,143 @@
+<p-toast position="bottom-left" ></p-toast>
+<p-toast position="center" key="ac"></p-toast>
+<p-toast position="bottom-right" key="bc"></p-toast>
+<!--team table -->
+<div class="card">
+    <p-toolbar styleClass="p-mb-4">
+        <ng-template pTemplate="left">
+            <button pButton pRipple label="New" icon="pi pi-plus" class="mb-2 mr-2 btn-pill btn btn-gradient-success" (click)="openNew()"></button>
+            <button pButton pRipple label="Delete" icon="pi pi-trash" class="mb-2 mr-2 btn-pill btn btn-gradient-danger" (click)="deleteSelectedTeams(selectedTeams)" 
+            [disabled]="!selectedTeams || !selectedTeams.length"></button>
+        </ng-template>
+
+        <!--<ng-template pTemplate="right">
+            <button pButton pRipple label="Export" icon="pi pi-upload" class="p-button-help"></button>
+        </ng-template>-->
+    </p-toolbar>
+
+    <p-table #dt [value]="teams" [rows]="10" [paginator]="true" [(selection)]="selectedTeams" [rowHover]="true" dataKey="id"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true"
+    [globalFilterFields]="['nomEquipe', 'niveau']"
+   >
+        <ng-template pTemplate="caption">
+            <div class="p-d-flex p-ai-center p-jc-between">
+                <h5 class="p-m-0">Manage Teams</h5>
+                <span class="p-input-icon-left">
+                    <i class="pi pi-search"></i>
+                    <input pInputText type="text"
+                    (input)="applyFilterGlobal($event, 'contains')"  placeholder="Search..." />
+                </span>
+            </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+            <tr>
+                <th style="width: 3rem">
+                    <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                </th>
+
+               
+                <th  pSortableColumn="nomEquipe">Team name <p-sortIcon field="nomEquipe"></p-sortIcon></th>
+                <th class="text-center" pSortableColumn="niveau">Level <p-sortIcon field="niveau"></p-sortIcon></th>
+                <th class="text-center" pSortableColumn="member">Member number <p-sortIcon field="mamber"></p-sortIcon></th>
+                <th class="text-center" >Details </th>
+                <th class="text-center" >Action </th>
+                <th></th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-team>
+            <tr>
+                <td>
+                    <p-tableCheckbox [value]="team"></p-tableCheckbox>
+                  </td>
+                  <td >{{team.nomEquipe}}</td>
+                  <td class="text-center">{{team.niveau}}</td>
+                  <td class="text-center">6</td>
+                  <td class="text-center"><a [routerLink]="['Details',team.id]">Details</a></td>
+          
+                <td class="text-center">
+                    <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-edit p-mr-2" (click)="editTeam(team)"></button>
+                    <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" 
+                    (click)="deleteTeam(team)"></button>
+                </td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="summary">
+            <div class="p-d-flex p-ai-center p-jc-between">
+                In total there are {{teams ? teams.length : 0 }} Teams.
+            </div>
+        </ng-template>
+    </p-table>
+</div>
+
+
+
+
+<p-dialog [(visible)]="teamDialog" [style]="{width: '450px',height:'500px'}" 
+header="Team Details" [modal]="true" styleClass="p-fluid">
+  <ng-template pTemplate="content">
+    <form [formGroup]="ReactiveForm" (ngSubmit)="saveTeam()" novalidate>
+          <div class="row">
+            <div class="col-md-12 mb-3">
+              <label>Name</label>
+             
+              <input
+                type="text"
+                formControlName="nomEquipe"
+                [(ngModel)]="this.team.nomEquipe"
+                class="form-control"
+                required
+              />
+              
+              <!-- errors-->
+              <p *ngIf="nomEquipe?.touched && nomEquipe?.invalid" class="error">
+                <sup>*</sup>Please enter Team's name
+              </p>
+              <p *ngIf="nomEquipe?.errors?.['minlength']" class="error">
+                <sup>*</sup>Name shouldn't be less than 2 words
+              </p>
+            </div>
+
+            <div class=" mb-2  col-md-12 mb-3">
+                <label>Niveau</label>
+                    
+                    <body>
+                      <select [(ngModel)]="this.team.niveau" formControlName="niveau" >
+                        <option value="Junior">Junior</option>
+                        <option value="Senior">Senior</option>
+                        <option value="Expert">Expert</option>
+
+                      </select>
+                    </body>
+                
+
+                <!-- errors-->
+                <p *ngIf="niveau?.touched && niveau?.invalid" class="error">
+                  <sup>*</sup>Please enter Team's name
+                </p>
+              </div>
+          </div>
+          <div class="form-group text-right">
+            <button
+              type="button"
+              class="btn btn-secondary gap-right"
+              (click)="ResetForm()"
+            >
+              Reset
+            </button>
+            <button
+              type="submit"
+              class="btn btn-success"
+              [disabled]="!ReactiveForm.valid"
+            >
+              Add team
+            </button>
+          </div>
+
+
+
+    </form>
+  </ng-template>
+
+</p-dialog>
+
+<p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>

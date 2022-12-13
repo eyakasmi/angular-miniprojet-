@@ -1,0 +1,35 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+    <div class="app-main__inner"> 
+        <div class="page-title-wrapper">
+            <div class="page-title-heading">
+                <div class="container emp-profile">
+                        
+                    <form [formGroup]="addContratForm" (ngSubmit)="addContrat()" class="">
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <div class="position-relative form-group"><label for="exampleEmail11" class="">Date de debut d'un contrat</label><input name="email" id="exampleEmail11" formControlName="dateDebutContrat" placeholder="with a placeholder" type="date" class="form-control"></div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="position-relative form-group"><label for="examplePassword11" class="">Date de fin d'un contrat</label><input name="password" id="examplePassword11" formControlName="dateFinContrat" placeholder="password placeholder" type="date" class="form-control"></div>
+                            </div>
+                        </div>
+                        <div class="position-relative form-group">
+                        <select class="form-control" formControlName="specialite">
+                            <option *ngFor="let specialite of specialites"
+                                    [value]="specialite">
+                                    {{specialite}}
+                            </option>
+                          </select>
+                        </div>
+                        <div style="margin-bottom: 40px" class="position-relative form-check"><input name="check" id="exampleCheck" formControlName="archive" type="checkbox" class="form-check-input"><label for="exampleCheck" class="form-check-label">Archived</label></div>
+                        <button type="submit" class="mt-2 btn btn-primary">Add</button>
+                    </form>
+                                  
+                </div>
+            </div>
+        </div>
+    </div>

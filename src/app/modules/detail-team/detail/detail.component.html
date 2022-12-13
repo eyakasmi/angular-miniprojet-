@@ -1,0 +1,40 @@
+
+<div class="col-sm-12 col-md-12 col-xl-4">
+    <div class="card-shadow-primary card-border text-white mb-3 card bg-primary">
+        <div class="dropdown-menu-header"  *ngFor="let detail of details">
+            <div class="dropdown-menu-header-inner bg-primary" >
+                <div> 
+                    <i class= "update fi fi-rr-edit"  (click)="sendToFils(detail)"></i>
+                </div>
+                <div class="menu-header-content" >
+                  
+
+                    <div class="avatar-icon-wrapper mb-3 avatar-icon-xl">
+                        <div class="avatar-icon"><img src="assets/images/avatars/team.jpg" alt="Avatar 5">
+                        </div>
+                    </div>
+                    <div>
+                        <h5 class="menu-header-title">{{teamname}}</h5>
+                        <h6 class="menu-header-subtitle">{{teamlevel}}</h6>
+                    </div>
+                    <div [ngStyle]="{'padding-top': '1rem'}">
+                        <h5 class="menu-header-title" [ngStyle]="{'text-decoration': 'underline'}" >DETAIL</h5>
+                        <h6 class="menu-header-subtitle">Class: {{detail.salle}}</h6>
+                        <h6 class="menu-header-subtitle">Subject: {{detail.thematique}}</h6>
+                    </div> 
+                </div>
+            </div>
+        </div>
+        <div class="text-center d-block card-footer">
+            <div *ngIf="exist" >
+                <button class="btn-shadow-dark btn-wider btn btn-dark" (click)="openAddForm()" >  Add Team Detail</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div *ngIf="shouldOpen">
+    <app-add [detailFormParent]="detail" (notification)="addDetail($event)"></app-add>
+</div>
+

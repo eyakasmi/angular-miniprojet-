@@ -1,0 +1,77 @@
+.vertical-nav-menu  i.sidebar-icon {
+    text-align: center;
+    width: 34px;
+    height: 34px;
+    line-height: 34px;
+    position: absolute;
+    left: 5px;
+    right: 5px;
+    top: 50%;
+    margin-top: -17px;
+    font-size: 1.1rem;
+    opacity: .3;
+    transition: color 300ms
+    }
+    i.sidebar-icon {
+        opacity: .6
+    }
+    
+    .vertical-nav-menu i.sidebar-icon-state{
+    
+        text-align: center;
+        width: 34px;
+        height: 34px;
+        line-height: 34px;
+        position: absolute;
+        left: 5px;
+        top: 50%;
+        margin-top: -17px;
+        font-size: 1.5rem;
+        opacity: .3;
+        transition: color 300ms
+    }
+    
+    
+      .vertical-nav-menu li a:hover i.sidebar-icon-state {
+        opacity: 1
+      }
+    
+      .vertical-nav-menu li.mm-active > a i.sidebar-icon-state {
+        transform: rotate(-180deg)
+      }
+    
+      .vertical-nav-menu i.sidebar-icon-state {
+        transition: transform 300ms;
+        left: auto;
+        right: 0
+      }
+    
+      .app-sidebar.sidebar-text-light .vertical-nav-menu li a i.sidebar-icon-state {
+        opacity: .5
+      }
+    
+      .app-sidebar.sidebar-text-light .vertical-nav-menu li a:hover i.sidebar-icon-state {
+        opacity: 1
+      }
+      
+      .app-sidebar.sidebar-text-dark .vertical-nav-menu li a i.sidebar-icon-state {
+        opacity: .5
+      }
+      .app-sidebar.sidebar-text-dark .vertical-nav-menu li a:hover i.sidebar-icon-state {
+        opacity: 1
+      }
+      
+      .closed-sidebar .app-sidebar .app-sidebar__inner .sidebar-icon-state {
+        visibility: hidden
+      }
+      .closed-sidebar .app-sidebar:hover .app-sidebar__inner .sidebar-icon-state {
+        visibility: visible
+      }
+      
+      .sidebar-mobile-open .app-sidebar .app-sidebar__inner .sidebar-icon-state {
+        visibility: visible
+      }
+
+      .first{
+        padding-top: 1rem;
+      }

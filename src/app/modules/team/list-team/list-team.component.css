@@ -1,0 +1,27 @@
+.btn-gradient-success {
+    background-image: linear-gradient(140deg,#298957 -30%,#3ac47d 90%);
+    background-color: #298957;
+    border-color: #298957;
+    color: #fff;
+}
+
+.btn-gradient-danger {
+    background-image: linear-gradient(140deg,#981a38 -30%,#d92550 90%);
+    background-color: #981a38;
+    border-color: #981a38;
+    color: #fff;
+}
+
+.btn {
+    position: relative;
+    transition: color .15s,background-color .15s,border-color .15s,box-shadow .15s;
+}
+
+.btn {
+    font-size: .8rem;
+    font-weight: 500;
+}
+
+
+
+

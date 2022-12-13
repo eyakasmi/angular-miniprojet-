@@ -1,0 +1,30 @@
+
+
+
+<div class="card mt-2">
+<div class="card-body"><h5 class="card-title">Controls Types</h5>
+  <form  #f="ngForm" (ngSubmit)="notifparent(student);f.reset()">
+
+    <div class="position-relative form-group"><label for="nomE" class="">Nom</label>
+      <input class="form-control" type="text"  name="nomE"  placeholder="Taper votre nom" [(ngModel)]="student.nomE" required #nomE="ngModel" required minlength="3">
+      <small id="nomE" class="form-text text-muted" *ngIf="nomE.errors?.['required'] && nomE.touched">Firstname is required</small>
+      <small class="form-text text-muted" *ngIf="nomE.errors?.['minlength'] && nomE.touched">Firstname min length</small>
+    </div>
+    <div class="position-relative form-group"><label for="prenomE" class="">Prenom</label>
+      <input class="form-control" type="text" name="prenomE"  placeholder="Taper votre prenom" [(ngModel)]="student.prenomE" required #prenomE="ngModel" required minlength="3">
+      <small id="prenomE" class="form-text text-muted" *ngIf="prenomE.errors?.['required'] && prenomE.touched">Firstname is required</small>
+      <small id="option" class="form-text text-muted" *ngIf="prenomE.errors?.['minlength']">Oprion min length 3 required</small>
+
+    </div>
+    <div class="position-relative form-group"><label for="option" class="">Prenom</label>
+      <input class="form-control" type="text" name="option"  placeholder="id" [(ngModel)]="student.option" required #option="ngModel" required minlength="3">
+      <small  class="form-text text-muted" *ngIf="option.errors?.['required'] && option.touched">Oprion is required</small>
+      <small  class="form-text text-muted" *ngIf="option.errors?.['minlength']">Oprion min length 3 required</small>
+
+    </div>
+
+
+    <button type="submit" class="mt-1 btn btn-primary" [disabled]="f.invalid">Submit</button>
+  </form>
+</div>
+</div>

@@ -1,0 +1,59 @@
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<div class="app-main__inner">
+  <div class="page-title-wrapper">
+    <div class="page-title-heading">
+
+      <div class="content">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-4" style="margin-bottom: 30px;">
+              <button (click)="show()" type="button" class="btn btn-primary mt-3 btn-rounded waves-effect w-md waves-light" >{{buttonText}}</button>
+            </div>
+            <!-- end col -->
+          </div>
+          <div style="border-bottom: 1px bold grey;">
+          <app-add (newItemEvent)="addItem()" [idUniversity]="id" *ngIf="showChild"></app-add>
+          </div>
+          <!-- end row -->
+          <div class="row " >
+            <div class="col-md-4" *ngFor="let departement of departements">
+              <div class="mb-3 text-center card card-body"><h5 class="card-title">{{departement.nomDepart}}</h5>
+                <div role="group" class="btn-group-sm btn-group btn-group-toggle" data-toggle="buttons">
+                  <button  type="button" class="btn btn-warning" (click)="editDepart(departement)">edit</button>
+                  <button type="button" class="btn btn-danger" (click)="deleteDepart(departement)">delete</button>
+              </div>
+              </div>
+            </div>
+            
+            <!-- end col -->
+            <!-- end col -->
+
+            <!-- end col -->
+          </div>
+          <!-- end row -->
+
+
+
+        </div>
+        <!-- container -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<p-dialog [(visible)]="departementDialog" [style]="{width: '450px',height:'500px'}" header="universite Details" [modal]="true" styleClass="p-fluid">
+  <ng-template pTemplate="content">
+    <form [formGroup]="myForm" (ngSubmit)="updateDepart(departDriven.id)" novalidate>
+      <div class="form-row">
+        <div class="col-md-6">
+            <div class="position-relative form-group"><label for="exampleEmail11" class="">Nom de departement</label><input [(ngModel)]="departDriven.nomDepart" name="email" id="exampleEmail11" formControlName="nomDepart" placeholder="Nom de departement" type="text" class="form-control"></div>
+        </div>
+      </div>
+      <button [disabled]="!myForm?.valid" type="submit" class="mt-2 btn btn-primary">Update</button>
+    </form>
+  </ng-template>
+
+</p-dialog>
+
+<p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
+

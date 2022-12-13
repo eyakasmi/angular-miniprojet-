@@ -1,0 +1,91 @@
+
+<p-toast></p-toast>
+<p-toast position="bottom-right" key="bc"></p-toast>
+<div class="card">
+  <p-table #dt [value]="contrats" [rows]="10" [paginator]="true" [(selection)]="selectedProducts" [rowHover]="true" dataKey="id"
+           currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true"
+           [globalFilterFields]="['nomUniv']"
+          >
+    <ng-template pTemplate="caption">
+      <div class="p-d-flex p-ai-center p-jc-between">
+        <button [routerLink]="['/contrat/add',idStudent]" style="margin:0px 50px 0px 10px;" icon="pi pi-plus" pButton type="button" label="Add" class="p-button-success"></button>
+        <span class="p-input-icon-left">
+                    <i class="pi pi-search"></i>
+                              <input pInputText type="text"
+                                     (input)="applyFilterGlobal($event, 'contains')"  placeholder="Search..." />
+                </span>
+                
+                
+                
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th style="width: 3rem">
+          <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+        </th>
+        <th pSortableColumn="dateDebutContrat">Date début de contrat <p-sortIcon field="dateDebutContrat"></p-sortIcon></th>
+        <th pSortableColumn="dateFinContrat">date fin de contrat <p-sortIcon field="dateFinContrat"></p-sortIcon></th>
+        <th pSortableColumn="specialite">specialité <p-sortIcon field="specialite"></p-sortIcon></th>
+        <th pSortableColumn="archive">archive <p-sortIcon field="archive"></p-sortIcon></th>
+        
+
+        <th></th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-contrat >
+      <tr>
+        <td>
+          <p-tableCheckbox [value]="contrat"></p-tableCheckbox>
+        </td>
+        <td>{{contrat.dateDebutContrat}}</td>
+        <td>{{contrat.dateFinContrat}}</td>
+        <td>{{contrat.specialite}}</td>
+        <td>{{contrat.archive}}</td>
+
+        <td>
+          <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="editContrat(contrat)"></button>
+          <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteContrat(contrat)"></button>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="summary">
+      <div class="p-d-flex p-ai-center p-jc-between">
+        In total there are  universites.
+      </div>
+    </ng-template>
+  </p-table>
+
+
+</div>
+
+<p-dialog [(visible)]="contratDialog" [style]="{width: '450px',height:'500px'}" header="universite Details" [modal]="true" styleClass="p-fluid">
+  <ng-template pTemplate="content">
+    <form [formGroup]="myForm" (ngSubmit)="updateContrat(contratDriven.id)" novalidate>
+      <div class="form-row">
+        <div class="col-md-6">
+            <div class="position-relative form-group"><label for="exampleEmail11" class="">Date de debut d'un contrat</label><input [(ngModel)]="contratDriven.dateDebutContrat" name="email" id="exampleEmail11" formControlName="dateDebutContrat" placeholder="with a placeholder" type="date" class="form-control"></div>
+        </div>
+        <div class="col-md-6">
+            <div class="position-relative form-group"><label for="examplePassword11" class="">Date de fin d'un contrat</label><input [(ngModel)]="contratDriven.dateFinContrat" name="password" id="examplePassword11" formControlName="dateFinContrat" placeholder="password placeholder" type="date" class="form-control"></div>
+        </div>
+    </div>
+    <div class="position-relative form-group">
+    <select [(ngModel)]="contratDriven.specialite" class="form-control" formControlName="specialite">
+        <option *ngFor="let specialite of specialites"
+                [value]="specialite">
+                {{specialite}}
+        </option>
+      </select>
+    </div>
+    <div style="margin-bottom: 40px" class="position-relative form-check"><input [(ngModel)]="contratDriven.archive" name="check" id="exampleCheck" formControlName="archive" type="checkbox" class="form-check-input"><label for="exampleCheck" class="form-check-label">Archived</label></div>
+    <button [disabled]="!myForm?.valid" type="submit" class="mt-2 btn btn-primary">Update</button>
+             
+
+    </form>
+  </ng-template>
+
+</p-dialog>
+
+
+<p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>

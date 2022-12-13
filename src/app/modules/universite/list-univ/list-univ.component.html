@@ -1,0 +1,109 @@
+<p-toast></p-toast>
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "ball-scale-multiple" ><p style="color: white" > Loading... </p></ngx-spinner>
+<p-toast position="bottom-right" key="bc"></p-toast>
+<div class="card">
+  <p-toolbar styleClass="p-mb-4">
+    <ng-template pTemplate="left">
+      <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success p-mr-2" (click)="openNew()"></button>
+    </ng-template>
+
+  </p-toolbar>
+  <p-table #dt [value]="universites" [rows]="10" [paginator]="true"  [rowHover]="true" dataKey="id"
+           currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true"
+           [globalFilterFields]="['nomUniv']"
+          >
+    <ng-template pTemplate="caption">
+      <div class="p-d-flex p-ai-center p-jc-between">
+        <h5 class="p-m-0">Manage Universites</h5>
+        <span class="p-input-icon-left">
+                    <i class="pi pi-search"></i>
+                              <input pInputText type="text"
+                                     (input)="applyFilterGlobal($event, 'contains')"  placeholder="Search..." />
+                </span>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th style="width: 3rem">
+          <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+        </th>
+        <th pSortableColumn="nomUniv">Name <p-sortIcon field="nomUniv"></p-sortIcon></th>
+        <th pSortableColumn="image">Image <p-sortIcon field="image"></p-sortIcon></th>
+        <th pSortableColumn="students">Students <p-sortIcon field="image"></p-sortIcon></th>
+        <th pSortableColumn="students">Departements <p-sortIcon field="image"></p-sortIcon></th>
+        <th></th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-universite >
+      <tr>
+        <td>
+          <p-tableCheckbox [value]="universite"></p-tableCheckbox>
+        </td>
+        <td>{{universite.nomUniv}}</td>
+        <td><img [src]="universite.image" style="height:55px;width:auto;"/></td>
+        <td><a [routerLink]="['students',universite.id]" >List students</a></td>
+        <td><a [routerLink]="['/departement/list',universite.id]" >List Departement</a></td>
+
+        <td>
+          <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="editUniv(universite)"></button>
+          <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteUniv(universite)"></button>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="summary">
+      <div class="p-d-flex p-ai-center p-jc-between">
+        In total there are {{universites ? universites.length : 0 }} universites.
+      </div>
+    </ng-template>
+  </p-table>
+
+
+</div>
+
+<p-dialog [(visible)]="universiteDialog" [style]="{width: '450px',height:'500px'}" header="universite Details" [modal]="true" styleClass="p-fluid">
+  <ng-template pTemplate="content">
+    <form [formGroup]="myForm" (ngSubmit)="saveUniversite()" novalidate>
+          <div class="row">
+            <div class="col-md-12 mb-3">
+              <label>Name</label>
+              <input
+                type="text"
+                formControlName="nomUniv"
+                [(ngModel)]="this.universite.nomUniv"
+                class="form-control"
+                required
+              />
+              <!-- errors-->
+              <p *ngIf="nomUniv?.touched && nomUniv?.invalid" class="error">
+                <sup>*</sup>Please enter atleast name
+              </p>
+              <p *ngIf="nomUniv?.errors?.['minlength']" class="error">
+                <sup>*</sup>Name shouldn't be less than 2 words
+              </p>
+            </div>
+          </div>
+          <div class="form-group text-right">
+            <button
+              type="button"
+              class="btn btn-secondary gap-right"
+              (click)="ResetForm()"
+            >
+              Reset
+            </button>
+            <button
+              type="submit"
+              class="btn btn-success"
+              [disabled]="!myForm?.valid"
+            >
+              Add universite
+            </button>
+          </div>
+
+
+
+    </form>
+  </ng-template>
+
+</p-dialog>
+
+<p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>

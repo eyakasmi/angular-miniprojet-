@@ -1,0 +1,16 @@
+{
+  "data": [
+    {
+      "idUniv":1,
+      "nomUniv":"Esprit"
+    },
+    {
+      "idUniv":2,
+      "nomUniv":"Isamm"
+    },
+    {
+      "idUniv":3,
+      "nomUniv":"Isi"
+    }
+  ]
+}

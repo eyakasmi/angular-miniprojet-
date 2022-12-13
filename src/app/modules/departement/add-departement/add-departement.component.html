@@ -1,0 +1,15 @@
+
+
+
+<div class="container">
+    <form [formGroup]="addDepart" (ngSubmit)="add()" >
+        <div class="form-floating mb-3">
+            <label for="floatingInput">Nom de la departement</label>
+            <input type="nomDepart"  formControlName="nomDepart" class="form-control" id="floatingInput" placeholder="Departement">
+            
+        </div>
+        <button [disabled]=" ! addDepart.valid  " type="submit" class="btn btn-primary mt-3 btn-rounded waves-effect w-md waves-light" >Add</button>
+
+    </form>
+</div>
+  

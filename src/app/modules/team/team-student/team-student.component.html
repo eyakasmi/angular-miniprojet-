@@ -1,0 +1,70 @@
+<p> student List on this team!</p>
+
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<!--
+<button type="button" class="btn btn-primary mt-3 btn-rounded waves-effect w-md waves-light" (click)="openAddForm()" >Add new Student</button>
+
+<div *ngIf="shouldOpen" >
+    <form [formGroup]="ReactiveForm" (ngSubmit)="saveStudent()" novalidate>
+        <div class="card mt-2" [style]="{width: 'fit-content',height:'fit-content'}">
+            <div class="card-body">
+              <h5 class="card-title">Add Student to this team</h5>
+                <div class="col-md-12 mb-3" >
+                    <select class="mb-2 form-control-lg form-control"  formControlName="nomE" >
+                    
+                        <option  *ngFor="let ss of studentsAll" >{{ss.prenomE }} </option>
+                        
+                    </select>
+                    
+                </div>
+                <button class="mt-1 btn btn-primary" type="submit"
+                [disabled]="!ReactiveForm.valid">Add</button>
+
+            </div>
+
+        </div>
+    </form>   
+</div>
+
+-->
+
+
+<div class="app-main__inner">
+  <div class="page-title-wrapper">
+    <div class="page-title-heading">
+
+      <div class="content">
+        <div class="container">
+
+          <div class="row row-cols-1 row-cols-md-3 g-4" >
+            <div class="col-lg-4" *ngFor="let student of students">
+              <div class="text-center card-box">
+                <div class="member-card pt-2 pb-2">
+                  <div class="">
+                    <h4>{{student.prenomE }} {{student.nomE}}</h4>
+                    <p class="text-muted">Option <span>| </span><span><a href="#" class="text-pink">{{student.option}}</a></span></p>
+
+                </div>
+                  <ul class="social-links list-inline">
+
+                    <li class="list-inline-item"><i class="fa fa-edit" (click)="sendToFils(student)"></i></li>
+                    <li class="list-inline-item"><i class="fa fa-trash" (click)="deleteStudentFromTeam(student)"></i></li>
+                  </ul>
+                  <button type="button" class="btn btn-primary mt-3 btn-rounded waves-effect w-md waves-light" [routerLink]="['profile',student.id]">View Profile</button>
+                </div>
+              </div>
+            </div>
+            <!-- end col -->
+            <!-- end col -->
+
+            <!-- end col -->
+          </div>
+
+
+        </div>
+        <!-- container -->
+      </div>
+    </div>
+  </div>
+</div>
+<p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>

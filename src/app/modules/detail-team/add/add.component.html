@@ -1,0 +1,24 @@
+
+<div class="main-card mb-3 card">
+    <div class="card-body">
+    <h5 class="card-title"> Team detail </h5>
+        <form #f="ngForm" (ngSubmit)="notifparent(detail);f.reset()">
+            <div class="position-relative form-group">
+                <label for="salle"class="">Class</label>
+                <input name="salle" id="salle" placeholder="Enter the class" type="text" class="form-control" [(ngModel)]="detail.salle" required #salle="ngModel" > 
+                <small id="salle" class="form-text text-muted" *ngIf="salle.errors?.['required'] && salle.touched">class  is required</small>
+            </div>
+        
+            <div class="position-relative form-group">
+                <label for="thematique" class="">Subject</label>
+                <textarea name="thematique" id="thematique" placeholder=" Subject.." class="form-control"  [(ngModel)]="detail.thematique" required #thematique="ngModel" required minlength="6"></textarea>
+                <small  class="form-text text-muted" *ngIf="thematique.errors?.['required'] && thematique.touched">subject is required</small>
+                <small  class="form-text text-muted" *ngIf="thematique.errors?.['minlength']">Subject min length 6 required</small>
+
+            </div>
+        
+            <button type="submit" class="mt-1 btn btn-primary" [disabled]="f.invalid"> Save </button>
+        </form>
+    </div>
+</div>
+
